@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette - Deep blue government theme with saffron accents */
+    --background: 210 25% 98%;
+    --foreground: 215 35% 15%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 15%;
+    
+    --primary: 215 80% 35%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 215 35% 25%;
+    
+    --muted: 210 15% 92%;
+    --muted-foreground: 215 15% 45%;
+    
+    --accent: 30 95% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 215 80% 35%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom colors for government theme */
+    --navy: 215 80% 20%;
+    --navy-light: 215 70% 30%;
+    --teal: 175 60% 35%;
+    --teal-light: 175 50% 45%;
+    --saffron: 30 95% 50%;
+    --saffron-dark: 25 90% 45%;
+    --gold: 45 100% 50%;
+    --success: 145 65% 40%;
+
+    /* Status colors */
+    --status-normal: 146 38% 35%;
+    --status-warning: 45 93% 47%;
+    --status-critical: 354 70% 54%;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 35% 10%;
+    --foreground: 210 25% 95%;
+    
+    --card: 215 30% 14%;
+    --card-foreground: 210 25% 95%;
+    
+    --popover: 215 30% 14%;
+    --popover-foreground: 210 25% 95%;
+    
+    --primary: 30 95% 55%;
+    --primary-foreground: 215 35% 10%;
+    
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 25% 90%;
+    
+    --muted: 215 20% 18%;
+    --muted-foreground: 210 15% 60%;
+    
+    --accent: 30 95% 55%;
+    --accent-foreground: 215 35% 10%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
+    --ring: 30 95% 55%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    line-height: 1.6;
+    @apply border-border;
+  }
+  
+  html, body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    /* Optional: Improves smooth scrolling and layout stability */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Government badge styling */
+  .govt-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--teal)) 100%);
+    color: white;
+  }
+  
+  /* Project card styling */
+  .project-card {
+    @apply relative overflow-hidden rounded-xl bg-card border border-border transition-all duration-500;
+    box-shadow: 0 4px 20px hsl(215 35% 15% / 0.08);
+  }
+  
+  .project-card:hover {
+    @apply border-accent/30;
+    box-shadow: 0 12px 40px hsl(215 35% 15% / 0.15);
+    transform: translateY(-8px);
+  }
+  
+  /* Section styling */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-foreground;
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  .section-subtitle {
+    @apply text-lg md:text-xl text-muted-foreground max-w-2xl;
+  }
+  
+  /* Navbar styling */
+  .navbar-fixed {
+    @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-xl;
+    background: hsl(var(--background) / 0.9);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  /* Hero overlay */
+  .hero-overlay {
+    background: linear-gradient(135deg, hsl(215 80% 20% / 0.95), hsl(215 70% 30% / 0.85));
+  }
+  
+  /* Accent button styling */
+  .btn-accent {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--saffron-dark)));
+    color: white;
+    box-shadow: 0 4px 15px hsl(var(--saffron) / 0.4);
+  }
+  
+  .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px hsl(var(--saffron) / 0.3);
+  }
+  
+  /* Scroll indicator animation */
+  .scroll-indicator {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Typing cursor animation */
+  .typing-cursor {
+    animation: blink 1s step-end infinite;
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
+  /* Carousel styling */
+  .carousel-container {
+    @apply relative overflow-hidden;
+  }
+  
+  .carousel-track {
+    @apply flex gap-6;
+    animation: scroll 60s linear infinite;
+  }
+  
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--gold)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    padding-top: 0.25em;
+    padding-bottom: 0.1em;
+    line-height: 1.4;
+  }
+  
+  /* Stats counter styling */
+  .stat-number {
+    @apply text-5xl md:text-6xl font-bold;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--saffron-dark)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--background) / 0.7);
+  }
+  
+  /* Subtle pattern overlay */
+  .pattern-dots {
+    background-image: radial-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
