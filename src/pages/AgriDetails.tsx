@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, ResponsiveContainer, AreaChart, Area, Legend,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  Legend,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Loader2, Sprout, MapPin, Droplets, Thermometer, FlaskConical, Leaf,
+  Loader2,
+  Sprout,
+  MapPin,
+  Droplets,
+  Thermometer,
+  FlaskConical,
+  Leaf,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import apiClient from "../api/apiClient";
@@ -61,7 +75,9 @@ const StatCard = ({
     <div className="text-2xl font-bold text-green-600">
       {value ?? "--"}{" "}
       {unit && (
-        <span className="text-sm font-normal text-muted-foreground">{unit}</span>
+        <span className="text-sm font-normal text-muted-foreground">
+          {unit}
+        </span>
       )}
     </div>
   </Card>
@@ -69,7 +85,9 @@ const StatCard = ({
 
 const SectionDivider = ({ title }: { title: string }) => (
   <div className="flex items-center gap-3 mb-4">
-    <h2 className="text-sm font-semibold text-foreground whitespace-nowrap">{title}</h2>
+    <h2 className="text-sm font-semibold text-foreground whitespace-nowrap">
+      {title}
+    </h2>
     <div className="flex-1 h-px bg-border" />
   </div>
 );
@@ -103,18 +121,19 @@ const AgriDetails = () => {
         const graphRes = await apiClient.get<any>(
           `${API_URLS.GET_GRAPHICAL_DATA(entityId)}?filter=week`,
           ROOTS.SMIV_PLATFORM,
-          { "x-api-key": SMIV_API_KEY }
+          { "x-api-key": SMIV_API_KEY },
         );
         const rawGraph = Array.isArray(graphRes?.data) ? graphRes.data : [];
         const cleaned = rawGraph.map((group: any) => ({
           ...group,
-          data: group.data?.map((point: any) => {
-            const p: any = { x: point.x };
-            group.legends?.forEach((l: any) => {
-              p[l.key] = toNumber(point[l.key]);
-            });
-            return p;
-          }) || [],
+          data:
+            group.data?.map((point: any) => {
+              const p: any = { x: point.x };
+              group.legends?.forEach((l: any) => {
+                p[l.key] = toNumber(point[l.key]);
+              });
+              return p;
+            }) || [],
         }));
         setGraphData(cleaned);
       } catch (err) {
@@ -128,10 +147,10 @@ const AgriDetails = () => {
 
   const chartPoints = graphData[0]?.data || [];
 
-  const nitrogen   = getLatestValue(chartPoints, "y3");
+  const nitrogen = getLatestValue(chartPoints, "y3");
   const phosphorus = getLatestValue(chartPoints, "y5");
-  const potassium  = getLatestValue(chartPoints, "y4");
-  const moisture   = getLatestValue(chartPoints, "y2");
+  const potassium = getLatestValue(chartPoints, "y4");
+  const moisture = getLatestValue(chartPoints, "y2");
 
   // ─── Render ─────────────────────────────────────────────────────────────────
 
@@ -140,7 +159,6 @@ const AgriDetails = () => {
       <Navbar />
 
       <div className="container mx-auto px-4 pt-24 pb-16 max-w-7xl">
-
         {/* ── Page Header ── */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
           <div>
@@ -155,22 +173,29 @@ const AgriDetails = () => {
             </h1>
             <p className="flex items-center gap-1 text-muted-foreground text-sm mt-1">
               {entityLocation && <MapPin className="h-3.5 w-3.5" />}
-              {entityName}{entityLocation ? ` · ${entityLocation}` : ""}
+              {entityName}
+              {entityLocation ? ` · ${entityLocation}` : ""}
             </p>
           </div>
 
           {/* Status legend pill */}
           <div className="flex items-center gap-4 bg-muted/60 border border-border rounded-xl px-4 py-2.5 self-start">
             {[
-              { label: "Healthy",  color: "bg-green-500"  },
+              { label: "Healthy", color: "bg-green-500" },
               { label: "Moderate", color: "bg-orange-400" },
-              { label: "Critical", color: "bg-red-500"    },
+              { label: "Critical", color: "bg-red-500" },
             ].map(({ label, color }) => (
               <div key={label} className="flex items-center gap-1.5">
-                <span className={`relative flex h-2.5 w-2.5 rounded-full ${color}`}>
-                  <span className={`absolute inline-flex h-full w-full rounded-full ${color} opacity-75 animate-ping`} />
+                <span
+                  className={`relative flex h-2.5 w-2.5 rounded-full ${color}`}
+                >
+                  <span
+                    className={`absolute inline-flex h-full w-full rounded-full ${color} opacity-75 animate-ping`}
+                  />
                 </span>
-                <span className="text-xs font-semibold text-muted-foreground">{label}</span>
+                <span className="text-xs font-semibold text-muted-foreground">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
@@ -223,19 +248,23 @@ const AgriDetails = () => {
               <SectionDivider title="Weekly Trends" />
               <Tabs defaultValue="sensors" className="space-y-4">
                 <TabsList>
-                  <TabsTrigger value="sensors">Soil &amp; Environment</TabsTrigger>
+                  <TabsTrigger value="sensors">
+                    Soil &amp; Environment
+                  </TabsTrigger>
                   <TabsTrigger value="npk">NPK Levels</TabsTrigger>
                 </TabsList>
 
                 {/* ── Tab 1: Soil & Environment ── */}
                 <TabsContent value="sensors" className="space-y-4">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
                     {/* Soil Moisture */}
                     <Card className="border-0 shadow-sm">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                          <Droplets className="h-4 w-4" style={{ color: "#0ea5e9" }} />
+                          <Droplets
+                            className="h-4 w-4"
+                            style={{ color: "#0ea5e9" }}
+                          />
                           Soil Moisture (%)
                         </CardTitle>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -244,11 +273,23 @@ const AgriDetails = () => {
                       </CardHeader>
                       <CardContent className="h-[280px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <AreaChart data={chartPoints} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                          <AreaChart
+                            data={chartPoints}
+                            margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
+                          >
+                            <CartesianGrid
+                              strokeDasharray="3 3"
+                              stroke="#f1f5f9"
+                              vertical={false}
+                            />
                             <XAxis
                               dataKey="x"
-                              tickFormatter={(t) => new Date(t).toLocaleDateString([], { month: "short", day: "numeric" })}
+                              tickFormatter={(t) =>
+                                new Date(t).toLocaleDateString([], {
+                                  month: "short",
+                                  day: "numeric",
+                                })
+                              }
                               tick={{ fontSize: 10, fill: "#94a3b8" }}
                               axisLine={false}
                               tickLine={false}
@@ -260,7 +301,9 @@ const AgriDetails = () => {
                             />
                             <Tooltip
                               contentStyle={chartTooltipStyle}
-                              labelFormatter={(t) => new Date(t).toLocaleString()}
+                              labelFormatter={(t) =>
+                                new Date(t).toLocaleString()
+                              }
                             />
                             <Area
                               type="monotone"
@@ -282,7 +325,10 @@ const AgriDetails = () => {
                     <Card className="border-0 shadow-sm">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                          <Thermometer className="h-4 w-4" style={{ color: "#f59e0b" }} />
+                          <Thermometer
+                            className="h-4 w-4"
+                            style={{ color: "#f59e0b" }}
+                          />
                           Temperature (°C)
                         </CardTitle>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -291,11 +337,23 @@ const AgriDetails = () => {
                       </CardHeader>
                       <CardContent className="h-[280px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={chartPoints} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                          <LineChart
+                            data={chartPoints}
+                            margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
+                          >
+                            <CartesianGrid
+                              strokeDasharray="3 3"
+                              stroke="#f1f5f9"
+                              vertical={false}
+                            />
                             <XAxis
                               dataKey="x"
-                              tickFormatter={(t) => new Date(t).toLocaleDateString([], { month: "short", day: "numeric" })}
+                              tickFormatter={(t) =>
+                                new Date(t).toLocaleDateString([], {
+                                  month: "short",
+                                  day: "numeric",
+                                })
+                              }
                               tick={{ fontSize: 10, fill: "#94a3b8" }}
                               axisLine={false}
                               tickLine={false}
@@ -307,7 +365,9 @@ const AgriDetails = () => {
                             />
                             <Tooltip
                               contentStyle={chartTooltipStyle}
-                              labelFormatter={(t) => new Date(t).toLocaleString()}
+                              labelFormatter={(t) =>
+                                new Date(t).toLocaleString()
+                              }
                             />
                             <Line
                               type="monotone"
@@ -322,7 +382,6 @@ const AgriDetails = () => {
                         </ResponsiveContainer>
                       </CardContent>
                     </Card>
-
                   </div>
                 </TabsContent>
 
@@ -331,7 +390,10 @@ const AgriDetails = () => {
                   <Card className="border-0 shadow-sm">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                        <Sprout className="h-4 w-4" style={{ color: "#22c55e" }} />
+                        <Sprout
+                          className="h-4 w-4"
+                          style={{ color: "#22c55e" }}
+                        />
                         Soil Nutrients (mg/kg)
                       </CardTitle>
                       <p className="text-xs text-muted-foreground mt-0.5">
@@ -340,11 +402,22 @@ const AgriDetails = () => {
                     </CardHeader>
                     <CardContent className="h-[380px]">
                       <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={chartPoints} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                        <LineChart
+                          data={chartPoints}
+                          margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
+                        >
+                          <CartesianGrid
+                            strokeDasharray="3 3"
+                            stroke="#f1f5f9"
+                          />
                           <XAxis
                             dataKey="x"
-                            tickFormatter={(t) => new Date(t).toLocaleDateString([], { month: "short", day: "numeric" })}
+                            tickFormatter={(t) =>
+                              new Date(t).toLocaleDateString([], {
+                                month: "short",
+                                day: "numeric",
+                              })
+                            }
                             tick={{ fontSize: 10, fill: "#94a3b8" }}
                             axisLine={false}
                             tickLine={false}
@@ -395,7 +468,6 @@ const AgriDetails = () => {
                     </CardContent>
                   </Card>
                 </TabsContent>
-
               </Tabs>
             </div>
           </>

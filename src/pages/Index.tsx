@@ -10,17 +10,22 @@ import ProjectsSection from "@/components/ProjectsSection";
 import { Spinner } from "@/components/ui/spinner";
 import { useTranslation } from "react-i18next";
 
+// UPDATED IMPORT
+import MaahiAIButton from "@/features/maahi-ai/components/MaahiAIButton";
+
 const SATNAVARI_VILLAGE_ID = import.meta.env.VITE_SATNAVARI_VILLAGE_ID;
 const SMIV_API_KEY = import.meta.env.VITE_SMIV_API_KEY;
 
 const Index = () => {
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [loading, setLoading] = useState(true);
+
   const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProjectStats = async () => {
       setLoading(true);
+
       try {
         const response = await apiClient.get<any>(
           API_URLS.GET_USE_CASES_FOR_VILLAGE(SATNAVARI_VILLAGE_ID),
@@ -30,12 +35,9 @@ const Index = () => {
 
         const apiUseCases: any[] = response?.data || [];
 
-        // Store full use case list in localStorage so Level 1 pages
-        // can read assignmentId by matching useCaseName
-        // This avoids needing ProjectCard to pass router state
+        // Store full use case list in localStorage
         localStorage.setItem("smiv_use_cases", JSON.stringify(apiUseCases));
 
-        // Name matching - merge API stats + assignmentId into local projects
         const mergedProjects = initialProjects.map((localProject) => {
           const matchedUseCase = apiUseCases.find(
             (apiItem) =>
@@ -46,7 +48,9 @@ const Index = () => {
           if (matchedUseCase) {
             return {
               ...localProject,
+
               assignmentId: matchedUseCase.assignmentId,
+
               stats:
                 matchedUseCase.stats?.map((s: any) => ({
                   name: s.name,
@@ -54,12 +58,14 @@ const Index = () => {
                 })) || localProject.stats,
             };
           }
+
           return localProject;
         });
 
         setProjects(mergedProjects);
       } catch (error) {
         console.error("Failed to fetch use cases from SMIV platform:", error);
+
         setProjects(initialProjects);
       } finally {
         setLoading(false);
@@ -73,6 +79,7 @@ const Index = () => {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center bg-background">
         <Spinner className="size-12 text-primary mb-4" />
+
         <p className="text-muted-foreground animate-pulse text-lg font-medium">
           {t("loading_village")}
         </p>
@@ -83,14 +90,20 @@ const Index = () => {
   return (
     <>
       <Navbar />
+
       <main>
         <HeroSection />
+
         <EventSection />
+
         <section id="projects-section">
           <ProjectsSection projects={projects} />
         </section>
       </main>
+
       <Footer />
+
+      <MaahiAIButton />
     </>
   );
 };
