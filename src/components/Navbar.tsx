@@ -1,5 +1,5 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, Languages, Home, Info, LayoutDashboard } from "lucide-react";
+import { Menu, Languages, Home, Info, LayoutDashboard, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -14,12 +14,21 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
+// Method explanation: Manages application responsive layout headers with seamless smooth target routing and unified desktop/mobile language dropdown navigation.
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'mr', label: 'मराठी' },
+    { code: 'hi', label: 'हिन्दी' }
+  ];
+
+  const currentLanguageLabel = languages.find(lang => lang.code === i18n.language)?.label || 'English';
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -30,17 +39,14 @@ const Navbar = () => {
     }
   });
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'mr' : 'en';
-    i18n.changeLanguage(newLang);
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
   };
 
   const handleNavigation = (id: string) => {
     if (location.pathname !== '/') {
-      // If not on home page, navigate to home first then scroll
       navigate('/', { state: { scrollTo: id } });
     } else {
-      // If on home page, just scroll
       scrollToSection(id);
     }
   };
@@ -80,9 +86,9 @@ const Navbar = () => {
 
             {/* Center - Tagline (Desktop) */}
             <div className="hidden lg:flex items-center">
-            <span className="text-sm text-muted-foreground italic">
-              {t('tagline', '•Smart Intelligent Village')}
-            </span>
+              <span className="text-sm text-muted-foreground italic">
+                {t('tagline', '•Smart Intelligent Village')}
+              </span>
             </div>
 
             {/* Right Side - Navigation, Language, & Powered By */}
@@ -105,18 +111,33 @@ const Navbar = () => {
                   {t('solutions')}
                 </Button>
 
-                {/* Language Toggle Button */}
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={toggleLanguage}
-                    className="flex items-center gap-2 ml-2"
-                >
-                  <Languages className="w-4 h-4 text-primary" />
-                  <span className="font-medium">
-                  {i18n.language === 'en' ? 'मराठी' : 'English'}
-                </span>
-                </Button>
+                {/* Desktop Language Dropdown Selector */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center gap-2 ml-2 h-9 px-3"
+                    >
+                      <Languages className="w-4 h-4 text-primary" />
+                      <span className="font-medium text-sm">{currentLanguageLabel}</span>
+                      <ChevronDown className="h-3 w-3 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-32 bg-white border border-slate-200 shadow-md">
+                    {languages.map((lang) => (
+                        <DropdownMenuItem
+                            key={lang.code}
+                            onClick={() => changeLanguage(lang.code)}
+                            className={`cursor-pointer text-sm px-3 py-2 dynamic-lang-item ${
+                                i18n.language === lang.code ? 'bg-slate-100 text-primary font-medium' : ''
+                            }`}
+                        >
+                          {lang.label}
+                        </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
               {/* Powered By Section */}
@@ -155,12 +176,22 @@ const Navbar = () => {
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem onClick={toggleLanguage} className="flex items-center gap-2 cursor-pointer">
-                      <Languages className="w-4 h-4 text-primary" />
-                      <span className="font-medium">
-                      {i18n.language === 'en' ? 'मराठी' : 'English'}
-                    </span>
-                    </DropdownMenuItem>
+                    {/* Subheader context item for mobile selection visualization */}
+                    <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground flex items-center gap-2">
+                      <Languages className="w-3.5 h-3.5 text-primary" />
+                      <span>Language / भाषा</span>
+                    </div>
+                    {languages.map((lang) => (
+                        <DropdownMenuItem
+                            key={lang.code}
+                            onClick={() => changeLanguage(lang.code)}
+                            className={`pl-8 cursor-pointer text-sm py-1.5 ${
+                                i18n.language === lang.code ? 'bg-slate-100 text-primary font-medium' : ''
+                            }`}
+                        >
+                          {lang.label}
+                        </DropdownMenuItem>
+                    ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>

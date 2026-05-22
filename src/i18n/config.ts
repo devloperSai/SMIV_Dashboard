@@ -3,24 +3,25 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './en.json';
 import mr from './mr.json';
+import hi from './hi.json';
 
-//
 i18n
-    .use(LanguageDetector) // Automatically detects language from browser/local storage
+    .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         resources: {
             en: { translation: en },
-            mr: { translation: mr }
+            mr: { translation: mr },
+            hi: { translation: hi }
         },
-        fallbackLng: 'en', //
+        fallbackLng: 'en',
         debug: false,
         interpolation: {
-            escapeValue: false, // React already safes from xss
+            escapeValue: false,
         },
         detection: {
             order: ['localStorage', 'navigator'],
-            caches: ['localStorage'], // Persists the language choice
+            caches: ['localStorage'],
         }
     });
 
