@@ -1,4 +1,4 @@
-// ─── MAAHI AI — Internationalisation ─────────────────────────────────────────
+// ─── Maha AI — Internationalisation ─────────────────────────────────────────
 // Three languages: Marathi (mr) · English (en) · Hindi (hi)
 // Add every UI string here; never hard-code text in components.
 
@@ -191,13 +191,13 @@ const mr: MaahiStrings = {
   langPickerTitle: "भाषा निवडा",
   langPickerSub: "तुमची पसंतीची भाषा निवडा",
 
-  btnTitle: "Maahi AI सहाय्यक",
+  btnTitle: "Maha AI सहाय्यक",
   btnSub: "बोला • Type • Ask Anything",
   bubbleLine1: "👋 मला काही विचारा! Ask me anything.",
   bubbleLine2: "मी माही AI — तुमचा स्मार्ट गाव सहाय्यक",
 
   loginGreeting: "नमस्कार! 🙏",
-  loginSubLogin: "लॉगिन करा आणि MAAHI शी बोला",
+  loginSubLogin: "लॉगिन करा आणि माही शी बोला",
   loginSubRegister: "नवीन खाते तयार करा — Create Account",
   loginSubForgot: "तुमच्या ईमेलवर रीसेट लिंक मिळवा",
   loginTabLogin: "लॉगिन · Sign In",
@@ -240,14 +240,14 @@ const mr: MaahiStrings = {
   onboardingStart: "🚀 सुरू करा — Let's Start!",
   onboardingSkip: "वगळा • Skip",
 
-  chatTitle: "MAAHI AI — माही",
+  chatTitle: "MahaAI — माही",
   chatOnline: "सदैव उपलब्ध • Always Online",
   chatNewBtn: "नवीन",
   chatLogout: "बाहेर",
   chatClose: "×",
 
   welcomeGreeting: "नमस्कार! 🙏",
-  welcomeSub: "मी MAAHI — तुमचा AI सहाय्यक",
+  welcomeSub: "मी माही — तुमचा AI सहाय्यक",
   welcomeBody:
     "तुम्ही मला मराठीत किंवा English मध्ये कोणताही प्रश्न विचारू शकता.",
   welcomeStat1Val: "24/7",
@@ -256,7 +256,7 @@ const mr: MaahiStrings = {
   welcomeStat2Label: "& English",
   welcomeStat3Val: "100%",
   welcomeStat3Label: "मोफत",
-  awarenessLabel: "MAAHI AI बद्दल जाणून घ्या",
+  awarenessLabel: "Maha AI बद्दल जाणून घ्या",
   startChatBtn: "💬 संवाद सुरू करा",
   suggestionsLabel: "सामान्य प्रश्न",
   todayLabel: "आजचा संवाद",
@@ -269,7 +269,7 @@ const mr: MaahiStrings = {
   newChatCancel: "रद्द करा",
   newChatConfirm: "होय, सुरू करा",
 
-  sidebarBrand: "MAAHI AI",
+  sidebarBrand: "MAHA AI",
   sidebarBrandSub: "Smart Village AI",
   sidebarNewChat: "नवीन संवाद",
   sidebarHistoryLabel: "मागील संवाद",
@@ -287,7 +287,7 @@ const mr: MaahiStrings = {
   card1Title: "AI म्हणजे काय?",
   card1Body:
     "AI म्हणजे असा संगणक जो माणसासारखा विचार करतो, प्रश्न समजतो आणि उत्तर देतो.",
-  card2Title: "MAAHI कशी मदत करते?",
+  card2Title: "Maha कशी मदत करते?",
   card2Body:
     "शेती, आरोग्य, हवामान, सरकारी योजना — कोणताही प्रश्न विचारा, लगेच उत्तर मिळेल.",
   card3Title: "स्मार्ट व्हिलेज",
@@ -302,18 +302,18 @@ const mr: MaahiStrings = {
   chip3: "हवामान अपडेट",
   chip4: "बाजारभाव",
   chip5: "पशु आरोग्य",
-  chip6: "MAAHI म्हणजे काय?",
+  chip6: "Maha म्हणजे काय?",
 
-  slide1Title: "MAAHI AI म्हणजे काय?",
-  slide1Sub: "What is MAAHI AI?",
+  slide1Title: "Maha AI म्हणजे काय?",
+  slide1Sub: "What is Maha AI?",
   slide1Body:
-    "MAAHI हा एक स्मार्ट AI सहाय्यक आहे — एक डिजिटल मित्र जो तुमचे प्रश्न समजतो आणि लगेच उत्तर देतो.",
+    "Maha हा एक स्मार्ट AI सहाय्यक आहे — एक डिजिटल मित्र जो तुमचे प्रश्न समजतो आणि लगेच उत्तर देतो.",
   slide2Title: "AI म्हणजे नक्की काय?",
   slide2Sub: "What exactly is AI?",
   slide2Body:
-    '"कृत्रिम बुद्धिमत्ता" — एक संगणक जो माणसासारखा विचार करतो. जसे अनुभवी शेतकरी सल्ला देतो — तसेच MAAHI देते!',
-  slide3Title: "MAAHI कशात मदत करते?",
-  slide3Sub: "How does MAAHI help?",
+    '"कृत्रिम बुद्धिमत्ता" — एक संगणक जो माणसासारखा विचार करतो. जसे अनुभवी शेतकरी सल्ला देतो — तसेच Maha देते!',
+  slide3Title: "Maha कशात मदत करते?",
+  slide3Sub: "How does Maha help?",
   slide3List: [
     "🌾 शेती सल्ला व पीक माहिती",
     "🌦️ हवामान व पाऊस अंदाज",
@@ -323,18 +323,18 @@ const mr: MaahiStrings = {
     "📚 शिक्षण व शिष्यवृत्ती",
   ],
   slide4Title: "कसे वापरायचे?",
-  slide4Sub: "How to use MAAHI AI?",
+  slide4Sub: "How to use Maha AI?",
   slide4List: [
     "1️⃣ खाली चॅट बॉक्समध्ये प्रश्न लिहा",
     "2️⃣ मराठी किंवा English — दोन्ही चालतात",
     "3️⃣ Send बटण दाबा",
-    "4️⃣ MAAHI लगेच उत्तर देईल",
+    "4️⃣ Maha लगेच उत्तर देईल",
     "5️⃣ जुने संवाद History मध्ये पाहता येतात",
   ],
   slide5Title: "विश्वास ठेवता येईल का?",
   slide5Sub: "Can you trust MAAHI?",
   slide5Body:
-    "MAAHI तुमची माहिती सुरक्षित ठेवते. आजारपण किंवा कायदेशीर बाबींसाठी नेहमी तज्ञांचा सल्ला घ्या.",
+    "Maha तुमची माहिती सुरक्षित ठेवते. आजारपण किंवा कायदेशीर बाबींसाठी नेहमी तज्ञांचा सल्ला घ्या.",
 
   feat1: "शेती सल्ला",
   feat2: "हवामान",
@@ -354,13 +354,13 @@ const en: MaahiStrings = {
   langPickerTitle: "Choose Language",
   langPickerSub: "Select your preferred language",
 
-  btnTitle: "Maahi AI Assistant",
+  btnTitle: "Maha AI Assistant",
   btnSub: "Talk • Type • Ask Anything",
   bubbleLine1: "👋 Ask me anything!",
-  bubbleLine2: "I'm Maahi AI — your Smart Village Assistant",
+  bubbleLine2: "I'm Maha AI — your Smart Village Assistant",
 
   loginGreeting: "Welcome! 🙏",
-  loginSubLogin: "Sign in and chat with MAAHI",
+  loginSubLogin: "Sign in and chat with Maha AI",
   loginSubRegister: "Create a new account",
   loginSubForgot: "Get a reset link on your email",
   loginTabLogin: "Sign In",
@@ -405,14 +405,14 @@ const en: MaahiStrings = {
   onboardingStart: "🚀 Let's Start!",
   onboardingSkip: "Skip",
 
-  chatTitle: "MAAHI AI",
+  chatTitle: "Maha AI",
   chatOnline: "Always Online",
   chatNewBtn: "New",
   chatLogout: "Logout",
   chatClose: "×",
 
   welcomeGreeting: "Hello! 🙏",
-  welcomeSub: "I'm MAAHI — your AI Assistant",
+  welcomeSub: "I'm Maha — your AI Assistant",
   welcomeBody: "You can ask me anything in Marathi, Hindi or English.",
   welcomeStat1Val: "24/7",
   welcomeStat1Label: "Available",
@@ -420,7 +420,7 @@ const en: MaahiStrings = {
   welcomeStat2Label: "Languages",
   welcomeStat3Val: "100%",
   welcomeStat3Label: "Free",
-  awarenessLabel: "Learn About MAAHI AI",
+  awarenessLabel: "Learn About Maha AI",
   startChatBtn: "💬 Start Chat",
   suggestionsLabel: "Common Questions",
   todayLabel: "Today's Conversation",
@@ -433,7 +433,7 @@ const en: MaahiStrings = {
   newChatCancel: "Cancel",
   newChatConfirm: "Yes, Start",
 
-  sidebarBrand: "MAAHI AI",
+  sidebarBrand: "Maha AI",
   sidebarBrandSub: "Smart Village AI",
   sidebarNewChat: "New Chat",
   sidebarHistoryLabel: "Previous Chats",
@@ -451,7 +451,7 @@ const en: MaahiStrings = {
   card1Title: "What is AI?",
   card1Body:
     "AI is a computer that thinks like a human, understands questions and gives answers.",
-  card2Title: "How does MAAHI help?",
+  card2Title: "How does Maha help?",
   card2Body:
     "Farming, health, weather, government schemes — ask anything, get instant answers.",
   card3Title: "Smart Village",
@@ -468,15 +468,15 @@ const en: MaahiStrings = {
   chip5: "Animal Health",
   chip6: "What is MAAHI?",
 
-  slide1Title: "What is MAAHI AI?",
+  slide1Title: "What is Maha AI?",
   slide1Sub: "Your Smart Village Assistant",
   slide1Body:
-    "MAAHI is a smart AI assistant — a digital friend who understands your questions and answers instantly.",
+    "Maha is a smart AI assistant — a digital friend who understands your questions and answers instantly.",
   slide2Title: "What exactly is AI?",
   slide2Sub: "Artificial Intelligence explained",
   slide2Body:
-    '"Artificial Intelligence" — a computer that thinks like a human. Just like an experienced farmer gives advice — that\'s what MAAHI does!',
-  slide3Title: "How does MAAHI help?",
+    '"Artificial Intelligence" — a computer that thinks like a human. Just like an experienced farmer gives advice — that\'s what Maha does!',
+  slide3Title: "How does Maha help?",
   slide3Sub: "What can I ask?",
   slide3List: [
     "🌾 Farming advice & crop info",
@@ -492,13 +492,13 @@ const en: MaahiStrings = {
     "1️⃣ Type your question in the chat box",
     "2️⃣ Marathi, Hindi or English — all work",
     "3️⃣ Press the Send button",
-    "4️⃣ MAAHI will answer instantly",
+    "4️⃣ Maha will answer instantly",
     "5️⃣ View past chats in History",
   ],
   slide5Title: "Can you trust MAAHI?",
   slide5Sub: "Privacy & Safety",
   slide5Body:
-    "MAAHI keeps your information safe. For illness or legal matters, always consult a professional.",
+    "Maha keeps your information safe. For illness or legal matters, always consult a professional.",
 
   feat1: "Farming Advice",
   feat2: "Weather",
@@ -518,13 +518,13 @@ const hi: MaahiStrings = {
   langPickerTitle: "भाषा चुनें",
   langPickerSub: "अपनी पसंदीदा भाषा चुनें",
 
-  btnTitle: "Maahi AI सहायक",
+  btnTitle: "Maha AI सहायक",
   btnSub: "बोलें • टाइप करें • पूछें",
   bubbleLine1: "👋 कुछ भी पूछें!",
   bubbleLine2: "मैं माही AI — आपका स्मार्ट गाँव सहायक",
 
   loginGreeting: "नमस्ते! 🙏",
-  loginSubLogin: "लॉगिन करें और MAAHI से बात करें",
+  loginSubLogin: "लॉगिन करें और Maha से बात करें",
   loginSubRegister: "नया खाता बनाएं",
   loginSubForgot: "अपने ईमेल पर रीसेट लिंक पाएं",
   loginTabLogin: "लॉगिन · Sign In",
@@ -567,14 +567,14 @@ const hi: MaahiStrings = {
   onboardingStart: "🚀 शुरू करें!",
   onboardingSkip: "छोड़ें",
 
-  chatTitle: "MAAHI AI — माही",
+  chatTitle: "Maha AI — माही",
   chatOnline: "हमेशा उपलब्ध",
   chatNewBtn: "नया",
   chatLogout: "बाहर",
   chatClose: "×",
 
   welcomeGreeting: "नमस्ते! 🙏",
-  welcomeSub: "मैं MAAHI — आपका AI सहायक",
+  welcomeSub: "मैं Maha — आपका AI सहायक",
   welcomeBody: "आप मुझसे हिंदी, मराठी या English में कोई भी सवाल पूछ सकते हैं।",
   welcomeStat1Val: "24/7",
   welcomeStat1Label: "उपलब्ध",
@@ -582,7 +582,7 @@ const hi: MaahiStrings = {
   welcomeStat2Label: "भाषाएं",
   welcomeStat3Val: "100%",
   welcomeStat3Label: "मुफ्त",
-  awarenessLabel: "MAAHI AI के बारे में जानें",
+  awarenessLabel: "Maha AI के बारे में जानें",
   startChatBtn: "💬 बातचीत शुरू करें",
   suggestionsLabel: "सामान्य प्रश्न",
   todayLabel: "आज की बातचीत",
@@ -595,7 +595,7 @@ const hi: MaahiStrings = {
   newChatCancel: "रद्द करें",
   newChatConfirm: "हाँ, शुरू करें",
 
-  sidebarBrand: "MAAHI AI",
+  sidebarBrand: "Maha AI",
   sidebarBrandSub: "Smart Village AI",
   sidebarNewChat: "नई बातचीत",
   sidebarHistoryLabel: "पिछली बातचीत",
@@ -613,7 +613,7 @@ const hi: MaahiStrings = {
   card1Title: "AI क्या है?",
   card1Body:
     "AI एक ऐसा कंप्यूटर है जो इंसान की तरह सोचता है, सवाल समझता है और जवाब देता है।",
-  card2Title: "MAAHI कैसे मदद करती है?",
+  card2Title: "Maha कैसे मदद करती है?",
   card2Body:
     "खेती, स्वास्थ्य, मौसम, सरकारी योजनाएं — कोई भी सवाल पूछें, तुरंत जवाब मिलेगा।",
   card3Title: "स्मार्ट विलेज",
@@ -628,17 +628,17 @@ const hi: MaahiStrings = {
   chip3: "मौसम अपडेट",
   chip4: "बाजार भाव",
   chip5: "पशु स्वास्थ्य",
-  chip6: "MAAHI क्या है?",
+  chip6: "Maha क्या है?",
 
-  slide1Title: "MAAHI AI क्या है?",
+  slide1Title: "Maha AI क्या है?",
   slide1Sub: "आपका स्मार्ट गाँव सहायक",
   slide1Body:
-    "MAAHI एक स्मार्ट AI सहायक है — एक डिजिटल दोस्त जो आपके सवाल समझता है और तुरंत जवाब देता है।",
+    "Maha एक स्मार्ट AI सहायक है — एक डिजिटल दोस्त जो आपके सवाल समझता है और तुरंत जवाब देता है।",
   slide2Title: "AI वास्तव में क्या है?",
   slide2Sub: "कृत्रिम बुद्धिमत्ता",
   slide2Body:
-    '"कृत्रिम बुद्धिमत्ता" — एक कंप्यूटर जो इंसान की तरह सोचता है। जैसे अनुभवी किसान सलाह देता है — वैसे ही MAAHI देती है!',
-  slide3Title: "MAAHI किसमें मदद करती है?",
+    '"कृत्रिम बुद्धिमत्ता" — एक कंप्यूटर जो इंसान की तरह सोचता है। जैसे अनुभवी किसान सलाह देता है — वैसे ही Maha देती है!',
+  slide3Title: "Maha किसमें मदद करती है?",
   slide3Sub: "क्या पूछ सकते हैं?",
   slide3List: [
     "🌾 खेती सलाह और फसल जानकारी",
@@ -654,13 +654,13 @@ const hi: MaahiStrings = {
     "1️⃣ नीचे चैट बॉक्स में सवाल लिखें",
     "2️⃣ हिंदी, मराठी या English — सभी चलते हैं",
     "3️⃣ Send बटन दबाएं",
-    "4️⃣ MAAHI तुरंत जवाब देगी",
+    "4️⃣ Maha तुरंत जवाब देगी",
     "5️⃣ पुरानी बातचीत History में देखें",
   ],
-  slide5Title: "क्या MAAHI पर भरोसा कर सकते हैं?",
+  slide5Title: "क्या Maha पर भरोसा कर सकते हैं?",
   slide5Sub: "गोपनीयता और सुरक्षा",
   slide5Body:
-    "MAAHI आपकी जानकारी सुरक्षित रखती है। बीमारी या कानूनी मामलों के लिए हमेशा विशेषज्ञ से सलाह लें।",
+    "Maha आपकी जानकारी सुरक्षित रखती है। बीमारी या कानूनी मामलों के लिए हमेशा विशेषज्ञ से सलाह लें।",
 
   feat1: "खेती सलाह",
   feat2: "मौसम",

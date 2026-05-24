@@ -17,7 +17,7 @@ import Navbar from "@/components/Navbar";
 import apiClient from "../api/apiClient";
 import { ROOTS, API_URLS } from "../api/apiUrls";
 
-const SMIV_API_KEY = import.meta.env.VITE_SMIV_API_KEY;
+const SMIV_API_KEY = import.meta.env.VITE_SMIV_API_KEY || "SMIV-V1-7xR2p9Qz4L8mN5vW";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
