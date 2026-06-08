@@ -24,11 +24,11 @@ export const LANG_META: Record<
 };
 
 export const DEFAULT_LANG: Lang = "mr";
-export const LANG_STORAGE_KEY = "maahi_lang";
+export const LANG_STORAGE_KEY = "maha_lang";
 
 // ─── Translation map ──────────────────────────────────────────────────────────
 
-export interface MaahiStrings {
+export interface MahaStrings {
   // ── Language picker
   langPickerTitle: string;
   langPickerSub: string;
@@ -187,7 +187,7 @@ export interface MaahiStrings {
 }
 
 // ─── MARATHI ──────────────────────────────────────────────────────────────────
-const mr: MaahiStrings = {
+const mr: MahaStrings = {
   langPickerTitle: "भाषा निवडा",
   langPickerSub: "तुमची पसंतीची भाषा निवडा",
 
@@ -332,7 +332,7 @@ const mr: MaahiStrings = {
     "5️⃣ जुने संवाद History मध्ये पाहता येतात",
   ],
   slide5Title: "विश्वास ठेवता येईल का?",
-  slide5Sub: "Can you trust MAAHI?",
+  slide5Sub: "Can you trust MAHA?",
   slide5Body:
     "Maha तुमची माहिती सुरक्षित ठेवते. आजारपण किंवा कायदेशीर बाबींसाठी नेहमी तज्ञांचा सल्ला घ्या.",
 
@@ -350,7 +350,7 @@ const mr: MaahiStrings = {
 };
 
 // ─── ENGLISH ──────────────────────────────────────────────────────────────────
-const en: MaahiStrings = {
+const en: MahaStrings = {
   langPickerTitle: "Choose Language",
   langPickerSub: "Select your preferred language",
 
@@ -466,7 +466,7 @@ const en: MaahiStrings = {
   chip3: "Weather Update",
   chip4: "Market Prices",
   chip5: "Animal Health",
-  chip6: "What is MAAHI?",
+  chip6: "What is MAHA?",
 
   slide1Title: "What is Maha AI?",
   slide1Sub: "Your Smart Village Assistant",
@@ -486,7 +486,7 @@ const en: MaahiStrings = {
     "🏥 Health & first aid",
     "📚 Education & scholarships",
   ],
-  slide4Title: "How to use MAAHI?",
+  slide4Title: "How to use MAHA?",
   slide4Sub: "It's simple!",
   slide4List: [
     "1️⃣ Type your question in the chat box",
@@ -495,7 +495,7 @@ const en: MaahiStrings = {
     "4️⃣ Maha will answer instantly",
     "5️⃣ View past chats in History",
   ],
-  slide5Title: "Can you trust MAAHI?",
+  slide5Title: "Can you trust MAHA?",
   slide5Sub: "Privacy & Safety",
   slide5Body:
     "Maha keeps your information safe. For illness or legal matters, always consult a professional.",
@@ -514,7 +514,7 @@ const en: MaahiStrings = {
 };
 
 // ─── HINDI ────────────────────────────────────────────────────────────────────
-const hi: MaahiStrings = {
+const hi: MahaStrings = {
   langPickerTitle: "भाषा चुनें",
   langPickerSub: "अपनी पसंदीदा भाषा चुनें",
 
@@ -677,6 +677,6 @@ const hi: MaahiStrings = {
 
 // ─── Export ───────────────────────────────────────────────────────────────────
 
-export const TRANSLATIONS: Record<Lang, MaahiStrings> = { mr, en, hi };
+export const TRANSLATIONS: Record<Lang, MahaStrings> = { mr, en, hi };
 
-export const t = (lang: Lang): MaahiStrings => TRANSLATIONS[lang];
+export const t = (lang: Lang): MahaStrings => TRANSLATIONS[lang];

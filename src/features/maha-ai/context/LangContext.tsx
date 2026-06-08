@@ -5,7 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { Lang, DEFAULT_LANG, LANG_STORAGE_KEY } from "../constants/maahiI18n";
+import { Lang, DEFAULT_LANG, LANG_STORAGE_KEY } from "../constants/mahaI18n";
 
 interface LangContextValue {
   lang: Lang;

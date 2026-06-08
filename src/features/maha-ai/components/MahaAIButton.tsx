@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import MaahiModal from "./MaahiModal";
+import MahaModal from "./MahaModal";
 import { useLang } from "../context/LangContext";
 import { LangProvider } from "../context/LangContext";
-import { t, LANG_META, Lang } from "../constants/maahiI18n";
+import { t, LANG_META, Lang } from "../constants/mahaI18n";
 
-const MaahiAIButtonInner = () => {
+const MahaAIButtonInner = () => {
   const { lang, setLang } = useLang();
   const s = t(lang);
 
@@ -79,32 +79,32 @@ const MaahiAIButtonInner = () => {
       />
 
       <style>{`
-        @keyframes maahi-breathe {
+        @keyframes maha-breathe {
           0%,100% { box-shadow: 0 6px 28px rgba(245,166,35,0.50), 0 0 0 0px rgba(245,166,35,0.12); }
           50%      { box-shadow: 0 6px 28px rgba(245,166,35,0.50), 0 0 0 8px rgba(245,166,35,0.10), 0 0 0 16px rgba(245,166,35,0.05); }
         }
-        @keyframes maahi-dot-pulse {
+        @keyframes maha-dot-pulse {
           0%,100% { transform: scale(1); opacity: 1; }
           50%      { transform: scale(1.4); opacity: 0.7; }
         }
-        @keyframes maahi-shimmer {
+        @keyframes maha-shimmer {
           0%   { background-position: -200% center; }
           100% { background-position: 200% center; }
         }
-        @keyframes maahi-wheat-sway {
+        @keyframes maha-wheat-sway {
           0%,100% { transform: rotate(-5deg); }
           50%      { transform: rotate(5deg); }
         }
-        @keyframes maahi-slide-up {
+        @keyframes maha-slide-up {
           from { opacity: 0; transform: translateY(14px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes maahi-lang-in {
+        @keyframes maha-lang-in {
           from { opacity: 0; transform: translateY(8px) scale(0.96); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .maahi-pill {
+        .maha-pill {
           font-family: 'Sora', sans-serif;
           display: inline-flex;
           align-items: center;
@@ -121,13 +121,13 @@ const MaahiAIButtonInner = () => {
           border: none;
           cursor: pointer;
           min-width: 228px;
-          animation: maahi-breathe 3.5s ease-in-out infinite;
+          animation: maha-breathe 3.5s ease-in-out infinite;
           transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
           outline: none;
           text-align: left;
           -webkit-tap-highlight-color: transparent;
         }
-        .maahi-pill::before {
+        .maha-pill::before {
           content: '';
           position: absolute;
           inset: 0;
@@ -137,19 +137,19 @@ const MaahiAIButtonInner = () => {
           opacity: 0;
           transition: opacity 0.3s ease;
         }
-        .maahi-pill:hover::before {
+        .maha-pill:hover::before {
           opacity: 1;
-          animation: maahi-shimmer 1.4s linear infinite;
+          animation: maha-shimmer 1.4s linear infinite;
         }
-        .maahi-pill:hover {
+        .maha-pill:hover {
           background: linear-gradient(135deg, #E8960F 0%, #F5A623 100%);
           transform: translateY(-5px) scale(1.04);
           box-shadow: 0 16px 44px rgba(245,166,35,0.60), 0 4px 12px rgba(245,166,35,0.30);
           animation: none;
         }
-        .maahi-pill:active { transform: translateY(-2px) scale(1.02); }
+        .maha-pill:active { transform: translateY(-2px) scale(1.02); }
 
-        .maahi-avatar-pill {
+        .maha-avatar-pill {
           position: relative;
           width: 46px;
           height: 46px;
@@ -163,13 +163,13 @@ const MaahiAIButtonInner = () => {
           box-shadow: 0 2px 10px rgba(0,0,0,0.35), 0 0 0 2px rgba(255,255,255,0.15) inset;
         }
 
-        .maahi-wheat {
+        .maha-wheat {
           display: inline-block;
-          animation: maahi-wheat-sway 2.8s ease-in-out infinite;
+          animation: maha-wheat-sway 2.8s ease-in-out infinite;
           transform-origin: bottom center;
         }
 
-        .maahi-dot {
+        .maha-dot {
           position: absolute;
           bottom: 1px;
           right: 1px;
@@ -179,11 +179,11 @@ const MaahiAIButtonInner = () => {
           background: #2ECC71;
           border: 2.5px solid #F5A623;
           box-shadow: 0 0 8px rgba(46,204,113,0.6);
-          animation: maahi-dot-pulse 2s ease-in-out infinite;
+          animation: maha-dot-pulse 2s ease-in-out infinite;
         }
 
-        .maahi-text { display: flex; flex-direction: column; gap: 2px; }
-        .maahi-t1 {
+        .maha-text { display: flex; flex-direction: column; gap: 2px; }
+        .maha-t1 {
           font-size: 15px;
           font-weight: 700;
           color: #0D1B2A;
@@ -191,7 +191,7 @@ const MaahiAIButtonInner = () => {
           white-space: nowrap;
           letter-spacing: -0.01em;
         }
-        .maahi-t2 {
+        .maha-t2 {
           font-size: 11px;
           font-weight: 500;
           color: rgba(13,27,42,0.60);
@@ -199,7 +199,7 @@ const MaahiAIButtonInner = () => {
           white-space: nowrap;
         }
 
-        .maahi-bubble {
+        .maha-bubble {
           font-family: 'Sora', sans-serif;
           position: fixed;
           bottom: 108px;
@@ -211,11 +211,11 @@ const MaahiAIButtonInner = () => {
           padding: 14px 18px;
           pointer-events: none;
           white-space: nowrap;
-          animation: maahi-slide-up 0.4s ease both;
+          animation: maha-slide-up 0.4s ease both;
         }
-        .maahi-bubble-l1 { font-size: 13px; font-weight: 700; color: #0D1B2A; margin: 0 0 5px; line-height: 1.4; }
-        .maahi-bubble-l2 { font-size: 11px; color: #64748B; margin: 0; line-height: 1.4; }
-        .maahi-bubble-tail {
+        .maha-bubble-l1 { font-size: 13px; font-weight: 700; color: #0D1B2A; margin: 0 0 5px; line-height: 1.4; }
+        .maha-bubble-l2 { font-size: 11px; color: #64748B; margin: 0; line-height: 1.4; }
+        .maha-bubble-tail {
           position: absolute;
           bottom: -8px;
           right: 20px;
@@ -227,7 +227,7 @@ const MaahiAIButtonInner = () => {
           border-top: 8px solid #ffffff;
         }
 
-        .maahi-lang-picker {
+        .maha-lang-picker {
           font-family: 'Sora', sans-serif;
           position: fixed;
           bottom: 108px;
@@ -238,9 +238,9 @@ const MaahiAIButtonInner = () => {
           box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
           padding: 18px 16px 14px;
           min-width: 220px;
-          animation: maahi-lang-in 0.28s cubic-bezier(0.34,1.4,0.64,1) both;
+          animation: maha-lang-in 0.28s cubic-bezier(0.34,1.4,0.64,1) both;
         }
-        .maahi-lang-title {
+        .maha-lang-title {
           font-size: 11px;
           font-weight: 700;
           color: #94A3B8;
@@ -251,7 +251,7 @@ const MaahiAIButtonInner = () => {
           align-items: center;
           gap: 6px;
         }
-        .maahi-lang-btn {
+        .maha-lang-btn {
           width: 100%;
           display: flex;
           align-items: center;
@@ -265,18 +265,18 @@ const MaahiAIButtonInner = () => {
           transition: all 0.15s ease;
           font-family: 'Sora', sans-serif;
         }
-        .maahi-lang-btn:hover {
+        .maha-lang-btn:hover {
           background: #F0FDF4;
           border-color: #86EFAC;
           transform: translateX(3px);
         }
-        .maahi-lang-btn:last-child { margin-bottom: 0; }
-        .maahi-lang-flag { font-size: 20px; }
-        .maahi-lang-labels { display: flex; flex-direction: column; flex: 1; }
-        .maahi-lang-native { font-size: 13px; font-weight: 700; color: #0F172A; line-height: 1.2; }
-        .maahi-lang-sub { font-size: 10px; color: #94A3B8; }
-        .maahi-lang-check { font-size: 14px; color: #22C55E; }
-        .maahi-lang-tail {
+        .maha-lang-btn:last-child { margin-bottom: 0; }
+        .maha-lang-flag { font-size: 20px; }
+        .maha-lang-labels { display: flex; flex-direction: column; flex: 1; }
+        .maha-lang-native { font-size: 13px; font-weight: 700; color: #0F172A; line-height: 1.2; }
+        .maha-lang-sub { font-size: 10px; color: #94A3B8; }
+        .maha-lang-check { font-size: 14px; color: #22C55E; }
+        .maha-lang-tail {
           position: absolute;
           bottom: -8px;
           right: 24px;
@@ -289,9 +289,9 @@ const MaahiAIButtonInner = () => {
         }
 
         @media (max-width: 480px) {
-          .maahi-pill { bottom: 16px; right: 16px; left: unset; min-width: 200px; }
-          .maahi-bubble { bottom: 90px; right: 16px; left: unset; }
-          .maahi-lang-picker { bottom: 90px; right: 16px; left: unset; }
+          .maha-pill { bottom: 16px; right: 16px; left: unset; min-width: 200px; }
+          .maha-bubble { bottom: 90px; right: 16px; left: unset; }
+          .maha-lang-picker { bottom: 90px; right: 16px; left: unset; }
         }
       `}</style>
 
@@ -307,8 +307,8 @@ const MaahiAIButtonInner = () => {
               zIndex: 9997,
             }}
           />
-          <div className="maahi-lang-picker">
-            <div className="maahi-lang-title">
+          <div className="maha-lang-picker">
+            <div className="maha-lang-title">
               <span
                 style={{
                   width: 14,
@@ -323,20 +323,20 @@ const MaahiAIButtonInner = () => {
             {(Object.keys(LANG_META) as Lang[]).map((l) => (
               <button
                 key={l}
-                className="maahi-lang-btn"
+                className="maha-lang-btn"
                 onClick={() => handleLangSelect(l)}
               >
-                <span className="maahi-lang-flag">{LANG_META[l].flag}</span>
-                <div className="maahi-lang-labels">
-                  <span className="maahi-lang-native">
+                <span className="maha-lang-flag">{LANG_META[l].flag}</span>
+                <div className="maha-lang-labels">
+                  <span className="maha-lang-native">
                     {LANG_META[l].nativeLabel}
                   </span>
-                  <span className="maahi-lang-sub">{LANG_META[l].label}</span>
+                  <span className="maha-lang-sub">{LANG_META[l].label}</span>
                 </div>
-                {lang === l && <span className="maahi-lang-check">✓</span>}
+                {lang === l && <span className="maha-lang-check">✓</span>}
               </button>
             ))}
-            <div className="maahi-lang-tail" />
+            <div className="maha-lang-tail" />
           </div>
         </>
       )}
@@ -344,7 +344,7 @@ const MaahiAIButtonInner = () => {
       {/* Speech bubble */}
       {showBubble && !showLangPicker && (
         <div
-          className="maahi-bubble"
+          className="maha-bubble"
           role="status"
           aria-live="polite"
           style={{
@@ -353,38 +353,38 @@ const MaahiAIButtonInner = () => {
             transition: bubbleTransition,
           }}
         >
-          <p className="maahi-bubble-l1">{s.bubbleLine1}</p>
-          <p className="maahi-bubble-l2">{s.bubbleLine2}</p>
-          <div className="maahi-bubble-tail" />
+          <p className="maha-bubble-l1">{s.bubbleLine1}</p>
+          <p className="maha-bubble-l2">{s.bubbleLine2}</p>
+          <div className="maha-bubble-tail" />
         </div>
       )}
 
       <button
-        className="maahi-pill"
-        aria-label="Open Maahi AI assistant"
+        className="maha-pill"
+        aria-label="Open Maha AI assistant"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={() => setShowLangPicker((v) => !v)}
       >
-        <div className="maahi-avatar-pill">
-          <span className="maahi-wheat">🌾</span>
-          <span className="maahi-dot" />
+        <div className="maha-avatar-pill">
+          <span className="maha-wheat">🌾</span>
+          <span className="maha-dot" />
         </div>
-        <div className="maahi-text">
-          <span className="maahi-t1">{s.btnTitle}</span>
-          <span className="maahi-t2">{s.btnSub}</span>
+        <div className="maha-text">
+          <span className="maha-t1">{s.btnTitle}</span>
+          <span className="maha-t2">{s.btnSub}</span>
         </div>
       </button>
 
-      <MaahiModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <MahaModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 };
 
-const MaahiAIButton = () => (
+const MahaAIButton = () => (
   <LangProvider>
-    <MaahiAIButtonInner />
+    <MahaAIButtonInner />
   </LangProvider>
 );
 
-export default MaahiAIButton;
+export default MahaAIButton;

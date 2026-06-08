@@ -38,12 +38,11 @@ import WifiHotspotSites from "./pages/WifiHotspotSites";
 import WifiHotspotDetails from "./pages/WifiHotspotDetails";
 import EVAutoSites from "./pages/EVAutoSites";
 import EVAutoDetails from "./pages/EVAutoDetails";
-import Eqosimdashboard from "./pages/Eqosimdashboard.tsx";
+import Eqosimdashboard from "./pages/EqosimDashboard.tsx";
 import MatreCommDashboard from "./pages/MatreCommDashboard";
 import ControlCenterDashboard from "./pages/ControlCenterDashboard";
 import CentralNOCDashboard from "./pages/CentralNOCDashboard";
 import CCTVDashboard from "./pages/CCTVDashboard";
-
 
 const queryClient = new QueryClient();
 
@@ -58,83 +57,170 @@ const App = () => (
 
           {/* Smart Kheti */}
           <Route path="/projects/smart-kheti/farms" element={<AgriFarms />} />
-          <Route path="/projects/smart-kheti/dashboard/:farmId" element={<AgriDetails />} />
+          <Route
+            path="/projects/smart-kheti/dashboard/:farmId"
+            element={<AgriDetails />}
+          />
 
           {/* Smart Pond */}
           <Route path="/projects/smart-pond/farms" element={<AquaFarms />} />
-          <Route path="/projects/smart-pond/dashboard/:pondId" element={<AquaDetails />} />
+          <Route
+            path="/projects/smart-pond/dashboard/:pondId"
+            element={<AquaDetails />}
+          />
 
           {/* Smart Waste */}
           <Route path="/projects/smart-waste/bins" element={<WasteBins />} />
-          <Route path="/projects/smart-waste/dashboard/:binId" element={<WasteDetails />} />
+          <Route
+            path="/projects/smart-waste/dashboard/:binId"
+            element={<WasteDetails />}
+          />
 
           {/* Engineering Healthcare */}
-          <Route path="/projects/engineering-healthcare/overview" element={<HealthDetails />} />
-          <Route path="/projects/engineering-healthcare/details/:entityId" element={<HealthEntityDetails />} />
+          <Route
+            path="/projects/engineering-healthcare/overview"
+            element={<HealthDetails />}
+          />
+          <Route
+            path="/projects/engineering-healthcare/details/:entityId"
+            element={<HealthEntityDetails />}
+          />
 
           {/* Smart Street Lights */}
-          <Route path="/projects/smart-light/villages" element={<LightVillages />} />
-          <Route path="/projects/smart-light/dashboard/:villageId" element={<LightDetails />} />
+          <Route
+            path="/projects/smart-light/villages"
+            element={<LightVillages />}
+          />
+          <Route
+            path="/projects/smart-light/dashboard/:villageId"
+            element={<LightDetails />}
+          />
 
           {/* Smart Cattle */}
           <Route path="/projects/smart-cattle/herd" element={<CattleHerd />} />
-          <Route path="/projects/smart-cattle/details/:id" element={<CattleDetails />} />
+          <Route
+            path="/projects/smart-cattle/details/:id"
+            element={<CattleDetails />}
+          />
 
           {/* Water Management */}
-          <Route path="/projects/water-management/sites" element={<WaterSites />} />
-          <Route path="/projects/water-management/dashboard/:siteId" element={<WaterSiteDetails />} />
+          <Route
+            path="/projects/water-management/sites"
+            element={<WaterSites />}
+          />
+          <Route
+            path="/projects/water-management/dashboard/:siteId"
+            element={<WaterSiteDetails />}
+          />
 
           {/* Wi-Fi Hotspots (iframe) */}
           <Route path="/projects/wifi/dashboard" element={<WifiScreen />} />
 
           {/* Climate Smart Agriculture ← NEW */}
-          <Route path="/projects/climate-agri/sites" element={<ClimateAgriSites />} />
-          <Route path="/projects/climate-agri/dashboard/:siteId" element={<ClimateAgriDetails />} />
+          <Route
+            path="/projects/climate-agri/sites"
+            element={<ClimateAgriSites />}
+          />
+          <Route
+            path="/projects/climate-agri/dashboard/:siteId"
+            element={<ClimateAgriDetails />}
+          />
 
           {/* Agriculture & Fire Safety Drone ← NEW */}
-          <Route path="/projects/drone-ops/sites" element={<DroneOperationsSites />} />
-          <Route path="/projects/drone-ops/dashboard/:droneId" element={<DroneOperationsDetails />} />
+          <Route
+            path="/projects/drone-ops/sites"
+            element={<DroneOperationsSites />}
+          />
+          <Route
+            path="/projects/drone-ops/dashboard/:droneId"
+            element={<DroneOperationsDetails />}
+          />
 
           {/* Smart Anganwadi ← NEW */}
-          <Route path="/projects/smart-anganwadi/sites" element={<AnganwadiSites />} />
-          <Route path="/projects/smart-anganwadi/dashboard/:anganwadiId" element={<AnganwadiDetails />} />
+          <Route
+            path="/projects/smart-anganwadi/sites"
+            element={<AnganwadiSites />}
+          />
+          <Route
+            path="/projects/smart-anganwadi/dashboard/:anganwadiId"
+            element={<AnganwadiDetails />}
+          />
 
           {/* Smart School ← NEW*/}
-          <Route path="/projects/smart-school/sites" element={<SmartSchoolSites />} />
-          <Route path="/projects/smart-school/dashboard/:schoolId" element={<SmartSchoolDetails />} />
+          <Route
+            path="/projects/smart-school/sites"
+            element={<SmartSchoolSites />}
+          />
+          <Route
+            path="/projects/smart-school/dashboard/:schoolId"
+            element={<SmartSchoolDetails />}
+          />
 
           {/* Healthcare  ← NEW*/}
-          <Route path="/projects/healthcare/sites" element={<HealthcareSites />} />
-          <Route path="/projects/healthcare/dashboard/:healthId" element={<HealthcareDetails />} />
+          <Route
+            path="/projects/healthcare/sites"
+            element={<HealthcareSites />}
+          />
+          <Route
+            path="/projects/healthcare/dashboard/:healthId"
+            element={<HealthcareDetails />}
+          />
 
           {/* PPDR ← NEW*/}
           <Route path="/projects/ppdr/sites" element={<PPDRSites />} />
-          <Route path="/projects/ppdr/dashboard/:ppdrid" element={<PPDRDetails />} />
+          <Route
+            path="/projects/ppdr/dashboard/:ppdrid"
+            element={<PPDRDetails />}
+          />
 
           {/* Fire Extinguisher ← NEW */}
-          <Route path="/projects/fire-extinguisher/dashboard/:extinguisherId" element={<FireExtinguisherDetails />} />
+          <Route
+            path="/projects/fire-extinguisher/dashboard/:extinguisherId"
+            element={<FireExtinguisherDetails />}
+          />
 
           {/* Wi-Fi Hotspots ← NEW */}
-          <Route path="/projects/wifi-hotspots/sites" element={<WifiHotspotSites />} />
-          <Route path="/projects/wifi-hotspots/dashboard/:hotspotId" element={<WifiHotspotDetails />} />
+          <Route
+            path="/projects/wifi-hotspots/sites"
+            element={<WifiHotspotSites />}
+          />
+          <Route
+            path="/projects/wifi-hotspots/dashboard/:hotspotId"
+            element={<WifiHotspotDetails />}
+          />
 
           {/* EV Auto ← NEW */}
           <Route path="/projects/ev-auto/sites" element={<EVAutoSites />} />
-          <Route path="/projects/ev-auto/dashboard/:evId" element={<EVAutoDetails />} />
+          <Route
+            path="/projects/ev-auto/dashboard/:evId"
+            element={<EVAutoDetails />}
+          />
 
           {/* eQoSim Proposal ← NEW */}
-          <Route path="/projects/eqosim/dashboard" element={<Eqosimdashboard />} />
+          <Route
+            path="/projects/eqosim/dashboard"
+            element={<Eqosimdashboard />}
+          />
 
           {/* MatreComm CraftWANI ← NEW */}
-          <Route path="/projects/matrecomm/dashboard" element={<MatreCommDashboard />} />
+          <Route
+            path="/projects/matrecomm/dashboard"
+            element={<MatreCommDashboard />}
+          />
 
           {/* Control Center Infra ← NEW */}
-          <Route path="/projects/control-center/dashboard" element={<ControlCenterDashboard />} />
+          <Route
+            path="/projects/control-center/dashboard"
+            element={<ControlCenterDashboard />}
+          />
 
           {/* Central NOC Dashboard ← NEW */}
-          <Route path="/projects/central-noc/dashboard" element={<CentralNOCDashboard />} />
+          <Route
+            path="/projects/central-noc/dashboard"
+            element={<CentralNOCDashboard />}
+          />
 
-            {/* Wifi Enabled CCTV Dashboard ← NEW */}
+          {/* Wifi Enabled CCTV Dashboard ← NEW */}
           <Route path="/projects/cctv/dashboard" element={<CCTVDashboard />} />
 
           {/* About */}

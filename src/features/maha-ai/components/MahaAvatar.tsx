@@ -1,12 +1,12 @@
-interface MaahiAvatarProps {
+interface MahaAvatarProps {
   size?: number;
   showPulse?: boolean;
 }
 
-export const MaahiAvatar = ({
+export const MahaAvatar = ({
   size = 28,
   showPulse = false,
-}: MaahiAvatarProps) => (
+}: MahaAvatarProps) => (
   <div
     style={{ position: "relative", flexShrink: 0, width: size, height: size }}
   >
@@ -40,7 +40,7 @@ export const MaahiAvatar = ({
           borderRadius: "50%",
           background: "#22C55E",
           border: "2px solid #fff",
-          animation: "maahi-pulse 2s ease infinite",
+          animation: "maha-pulse 2s ease infinite",
         }}
       />
     )}

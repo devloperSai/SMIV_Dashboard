@@ -1,5 +1,5 @@
 import { useLang } from "../context/LangContext";
-import { t } from "../constants/maahiI18n";
+import { t } from "../constants/mahaI18n";
 
 interface SuggestionChipsProps {
   onSelect: (label: string) => void;

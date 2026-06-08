@@ -11,10 +11,13 @@ import { Spinner } from "@/components/ui/spinner";
 import { useTranslation } from "react-i18next";
 
 // UPDATED IMPORT
-import MaahiAIButton from "@/features/maahi-ai/components/MaahiAIButton";
+import MahaAIButton from "@/features/maha-ai/components/MahaAIButton";
 
-const SATNAVARI_VILLAGE_ID = import.meta.env.VITE_SATNAVARI_VILLAGE_ID || "a5fc0498-d3e7-492e-a104-b97635af4503";
-const SMIV_API_KEY = import.meta.env.VITE_SMIV_API_KEY || "SMIV-V1-7xR2p9Qz4L8mN5vW";
+const SATNAVARI_VILLAGE_ID =
+  import.meta.env.VITE_SATNAVARI_VILLAGE_ID ||
+  "a5fc0498-d3e7-492e-a104-b97635af4503";
+const SMIV_API_KEY =
+  import.meta.env.VITE_SMIV_API_KEY || "SMIV-V1-7xR2p9Qz4L8mN5vW";
 
 const Index = () => {
   const [projects, setProjects] = useState<Project[]>(initialProjects);
@@ -103,7 +106,7 @@ const Index = () => {
 
       <Footer />
 
-      <MaahiAIButton />
+      <MahaAIButton />
     </>
   );
 };

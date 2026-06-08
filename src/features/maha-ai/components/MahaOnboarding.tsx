@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useLang } from "../context/LangContext";
-import { t } from "../constants/maahiI18n";
+import { t } from "../constants/mahaI18n";
 
-interface MaahiOnboardingProps {
+interface MahaOnboardingProps {
   onDone: () => void;
 }
 
-export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
+export const MahaOnboarding = ({ onDone }: MahaOnboardingProps) => {
   const { lang } = useLang();
   const s = t(lang);
 
@@ -117,7 +117,7 @@ export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
           position: "relative",
           overflow: "hidden",
         }}
-        className="maahi-ob-left"
+        className="maha-ob-left"
       >
         <div
           style={{
@@ -170,7 +170,7 @@ export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
             letterSpacing: "-0.02em",
           }}
         >
-          MAAHI AI
+          MAHA AI
         </div>
         <div
           style={{
@@ -215,7 +215,7 @@ export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
 
         <style>{`
           @media (max-width: 600px) {
-            .maahi-ob-left { display: none !important; }
+            .maha-ob-left { display: none !important; }
           }
         `}</style>
       </div>
@@ -274,7 +274,7 @@ export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
             flexDirection: "column",
             padding: "20px 28px",
             overflow: "hidden",
-            animation: "maahi-fade-up 0.35s ease both",
+            animation: "maha-fade-up 0.35s ease both",
           }}
         >
           <div style={{ marginBottom: 16 }}>
@@ -340,7 +340,7 @@ export const MaahiOnboarding = ({ onDone }: MaahiOnboardingProps) => {
                     alignItems: "center",
                     gap: 8,
                     border: "1px solid #F1F5F9",
-                    animation: `maahi-fade-up 0.3s ease ${i * 0.06}s both`,
+                    animation: `maha-fade-up 0.3s ease ${i * 0.06}s both`,
                   }}
                 >
                   {item}

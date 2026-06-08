@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import { AuthUser } from "../types/maahi.types";
+import { AuthUser } from "../types/maha.types";
 import {
   loginUser,
   registerUser,
   forgotPassword,
   fetchVillages,
   Village,
-} from "../api/maahiApi";
+} from "../api/mahaApi";
 import { useLang } from "../context/LangContext";
-import { t } from "../constants/maahiI18n";
+import { t } from "../constants/mahaI18n";
 
 type AuthTab = "login" | "register" | "forgot";
 
-interface MaahiLoginProps {
+interface MahaLoginProps {
   onSuccess: (user: AuthUser, token: string) => void;
   onClose: () => void;
 }
@@ -178,6 +178,54 @@ const LoginPanel = ({
   );
 };
 
+// ─── Register Field (top-level to prevent remount-on-render focus loss) ───────
+
+const RegisterField = ({
+  label,
+  icon,
+  field,
+  type = "text",
+  placeholder,
+  rightEl,
+  value,
+  onChange,
+  focused,
+  onFocus,
+  onBlur,
+}: {
+  label: string;
+  icon: string;
+  field: string;
+  type?: string;
+  placeholder: string;
+  rightEl?: React.ReactNode;
+  value: string;
+  onChange: (field: string, value: string) => void;
+  focused: string | null;
+  onFocus: (field: string) => void;
+  onBlur: () => void;
+}) => (
+  <div>
+    <label style={labelStyle}>{label}</label>
+    <div style={{ position: "relative" }}>
+      <span style={iconWrap}>{icon}</span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(field, e.target.value)}
+        placeholder={placeholder}
+        onFocus={() => onFocus(field)}
+        onBlur={onBlur}
+        style={{
+          ...inputStyle(focused === field),
+          paddingRight: rightEl ? 48 : 16,
+        }}
+      />
+      {rightEl}
+    </div>
+  </div>
+);
+
 // ─── Register Panel ───────────────────────────────────────────────────────────
 
 const RegisterPanel = ({
@@ -261,64 +309,43 @@ const RegisterPanel = ({
     }
   };
 
-  const Field = ({
-    label,
-    icon,
-    field,
-    type = "text",
-    placeholder,
-    rightEl,
-  }: {
-    label: string;
-    icon: string;
-    field: string;
-    type?: string;
-    placeholder: string;
-    rightEl?: React.ReactNode;
-  }) => (
-    <div>
-      <label style={labelStyle}>{label}</label>
-      <div style={{ position: "relative" }}>
-        <span style={iconWrap}>{icon}</span>
-        <input
-          type={type}
-          value={(form as Record<string, string>)[field]}
-          onChange={(e) => set(field, e.target.value)}
-          placeholder={placeholder}
-          onFocus={() => setFocused(field)}
-          onBlur={() => setFocused(null)}
-          style={{
-            ...inputStyle(focused === field),
-            paddingRight: rightEl ? 48 : 16,
-          }}
-        />
-        {rightEl}
-      </div>
-    </div>
-  );
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-        <Field
+        <RegisterField
           label={s.regName}
           icon="👤"
           field="name"
           placeholder={s.regNamePlaceholder}
+          value={form.name}
+          onChange={set}
+          focused={focused}
+          onFocus={setFocused}
+          onBlur={() => setFocused(null)}
         />
-        <Field
+        <RegisterField
           label={s.regPhone}
           icon="📱"
           field="phone"
           placeholder={s.regPhonePlaceholder}
+          value={form.phone}
+          onChange={set}
+          focused={focused}
+          onFocus={setFocused}
+          onBlur={() => setFocused(null)}
         />
       </div>
 
-      <Field
+      <RegisterField
         label={s.regEmail}
         icon="✉️"
         field="email"
         placeholder="email@example.com"
+        value={form.email}
+        onChange={set}
+        focused={focused}
+        onFocus={setFocused}
+        onBlur={() => setFocused(null)}
       />
 
       <div>
@@ -604,7 +631,7 @@ const ErrorBox = ({ msg }: { msg: string }) => (
       display: "flex",
       alignItems: "center",
       gap: 7,
-      animation: "maahi-slide-in 0.2s ease both",
+      animation: "maha-slide-in 0.2s ease both",
     }}
   >
     ⚠️ {msg}
@@ -668,7 +695,7 @@ const PrimaryButton = ({
             border: "2.5px solid rgba(255,255,255,0.35)",
             borderTopColor: "#fff",
             borderRadius: "50%",
-            animation: "maahi-spin 0.8s linear infinite",
+            animation: "maha-spin 0.8s linear infinite",
             display: "inline-block",
           }}
         />
@@ -682,7 +709,7 @@ const PrimaryButton = ({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export const MaahiLogin = ({ onSuccess, onClose }: MaahiLoginProps) => {
+export const MahaLogin = ({ onSuccess, onClose }: MahaLoginProps) => {
   const { lang } = useLang();
   const s = t(lang);
   const [tab, setTab] = useState<AuthTab>("login");
@@ -722,7 +749,7 @@ export const MaahiLogin = ({ onSuccess, onClose }: MaahiLoginProps) => {
           position: "relative",
           overflow: "hidden",
         }}
-        className="maahi-login-left"
+        className="maha-login-left"
       >
         {[
           { right: -60, top: -60, w: 200, h: 200 },
@@ -769,7 +796,7 @@ export const MaahiLogin = ({ onSuccess, onClose }: MaahiLoginProps) => {
             letterSpacing: "-0.02em",
           }}
         >
-          MAAHI AI
+          MAHA AI
         </div>
         <div
           style={{
@@ -811,7 +838,7 @@ export const MaahiLogin = ({ onSuccess, onClose }: MaahiLoginProps) => {
           </div>
         ))}
 
-        <style>{`@media (max-width: 600px) { .maahi-login-left { display: none !important; } }`}</style>
+        <style>{`@media (max-width: 600px) { .maha-login-left { display: none !important; } }`}</style>
       </div>
 
       {/* ── Right panel ── */}
