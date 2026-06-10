@@ -2,6 +2,25 @@ import { useState, useRef, useCallback } from "react";
 import type { AnalysisResult, AgroLang } from "../types/agro.types";
 import { analyzeCropImage } from "../api/agroApi";
 
+// ---------------------------------------------------------------------------
+// Geolocation helper — resolves with coords or (0, 0) if unavailable
+// ---------------------------------------------------------------------------
+const getLocation = (): Promise<{ lat: number; lon: number }> =>
+  new Promise((resolve) => {
+    if (!navigator.geolocation) {
+      resolve({ lat: 0, lon: 0 });
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => resolve({ lat: coords.latitude, lon: coords.longitude }),
+      () => resolve({ lat: 0, lon: 0 }),
+      { timeout: 5000 },
+    );
+  });
+
+// ---------------------------------------------------------------------------
+// Hook
+// ---------------------------------------------------------------------------
 export const useAgroLens = (lang: AgroLang = "mr") => {
   const [image, setImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>("");
@@ -25,17 +44,32 @@ export const useAgroLens = (lang: AgroLang = "mr") => {
 
   const analyze = useCallback(async () => {
     if (!imageFile) return;
+
     setAnalyzing(true);
     setError("");
+
     try {
-      const res = await analyzeCropImage(imageFile, selectedCrop, lang);
+      // Attempt to get the user's current location for the API payload.
+      // This is non-blocking — analysis proceeds even if location is denied.
+      const { lat, lon } = await getLocation();
+
+      const res = await analyzeCropImage(
+        imageFile,
+        selectedCrop,
+        lang,
+        /* userId */ "",
+        lat,
+        lon,
+      );
+
       setResult(res);
     } catch (err) {
+      console.error("[AgroLens] analyze error:", err);
       setError(
         lang === "mr"
-          ? "विश्लेषण अयशस्वी. पुन्हा प्रयत्न करा."
+          ? "विश्लेषण अयशस्वी. कृपया पुन्हा प्रयत्न करा."
           : lang === "hi"
-            ? "विश्लेषण विफल। पुनः प्रयास करें।"
+            ? "विश्लेषण विफल। कृपया पुनः प्रयास करें।"
             : "Analysis failed. Please try again.",
       );
     } finally {
