@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { AuthUser } from "../types/maha.types";
+import { AuthUser } from "../../maha-ai/types/maha.types";
 import {
   loginUser,
   registerUser,
   forgotPassword,
   fetchVillages,
   Village,
-} from "../api/mahaApi";
-import { useLang } from "../context/LangContext";
-import { t } from "../constants/mahaI18n";
+} from "../../maha-ai/api/mahaApi";
+import { useLang } from "../../maha-ai/context/LangContext";
+import { t } from "../../maha-ai/constants/mahaI18n";
 
 type AuthTab = "login" | "register" | "forgot";
 

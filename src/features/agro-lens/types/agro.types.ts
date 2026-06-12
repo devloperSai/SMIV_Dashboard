@@ -3,9 +3,10 @@ export type CropOption = {
   label: string;
   labelMr: string;
   labelHi: string;
+  plantixSupported?: boolean;
 };
 
-// Raw API response types from /agrolens/analyze
+// Raw API response types from /agrolens/analyze (unchanged)
 export type PlantixImageFeedback = {
   focus: string;
   distance: string;
@@ -50,24 +51,28 @@ export type AgroLensApiResponse = {
   updatedAt: string;
 };
 
-// Normalized result used by the UI (unchanged interface so modal needs no updates)
-export type AnalysisResult = {
+// ── NEW: one diagnosis = one tab ────────────────────────────────────────────
+export type DiagnosisItem = {
   disease: string;
   diseaseMr: string;
   diseaseHi: string;
   confidence: number;
   severity: "low" | "medium" | "high";
-  treatment: string;
-  treatmentMr: string;
-  treatmentHi: string;
+  treatmentOrganic: string;
+  treatmentChemical: string;
   prevention: string;
   preventionMr: string;
   preventionHi: string;
-  // Extra raw data preserved for future use
   scientificName?: string;
   pathogenClass?: string;
   symptomsShort?: string[];
-  imageReferences?: string[];
+  symptomsFull?: string;
+  isHealthy?: boolean;
+};
+
+// Normalized result used by the UI — now a list (1 = healthy, 1+ = diseases)
+export type AnalysisResult = {
+  diagnoses: DiagnosisItem[];
   uploadedImageUrl?: string;
   cropHealth?: string;
 };

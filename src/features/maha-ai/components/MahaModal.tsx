@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Screen, AuthUser } from "../types/maha.types";
-import { MahaLogin } from "./MahaLogin";
+import { MahaLogin } from "@/features/auth/components";
 import {
   deleteChatSession,
   fetchChatSessions,

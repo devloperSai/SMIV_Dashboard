@@ -11,7 +11,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useTranslation } from "react-i18next";
 
 // UPDATED IMPORT
-import MahaAIButton from "@/features/maha-ai/components/MahaAIButton";
+import AIServicesButton from "@/features/ai-services/components/AIServicesButton";
 
 const SATNAVARI_VILLAGE_ID =
   import.meta.env.VITE_SATNAVARI_VILLAGE_ID ||
@@ -106,7 +106,7 @@ const Index = () => {
 
       <Footer />
 
-      <MahaAIButton />
+      <AIServicesButton />
     </>
   );
 };
