@@ -765,59 +765,61 @@ const ResultPanel = ({
             flexShrink: 0,
           }}
         >
-          <button
-            onClick={handleDownloadPdf}
-            disabled={downloadingPdf}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              background: downloadingPdf ? "#F1F5F9" : "#fff",
-              border: "1.5px solid #E2E8F0",
-              borderRadius: 20,
-              padding: "6px 12px",
-              fontSize: 11,
-              fontWeight: 700,
-              color: downloadingPdf ? "#94A3B8" : "#15803D",
-              fontFamily: "Poppins, sans-serif",
-              cursor: downloadingPdf ? "not-allowed" : "pointer",
-              transition: "all 0.15s",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              if (!downloadingPdf) {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "#BBF7D0";
-                (e.currentTarget as HTMLButtonElement).style.background =
-                  "#F0FDF4";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!downloadingPdf) {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "#E2E8F0";
-                (e.currentTarget as HTMLButtonElement).style.background =
-                  "#fff";
-              }
-            }}
-          >
-            {downloadingPdf ? (
-              <span
-                style={{
-                  width: 12,
-                  height: 12,
-                  border: "2px solid rgba(21,128,61,0.25)",
-                  borderTopColor: "#15803D",
-                  borderRadius: "50%",
-                  animation: "agro-spin 0.8s linear infinite",
-                  display: "inline-block",
-                }}
-              />
-            ) : (
-              <span style={{ fontSize: 12 }}>📄</span>
-            )}
-            {downloadingPdf ? s.generatingPdf : s.downloadPdf}
-          </button>
+          {lang === "en" && (
+            <button
+              onClick={handleDownloadPdf}
+              disabled={downloadingPdf}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: downloadingPdf ? "#F1F5F9" : "#fff",
+                border: "1.5px solid #E2E8F0",
+                borderRadius: 20,
+                padding: "6px 12px",
+                fontSize: 11,
+                fontWeight: 700,
+                color: downloadingPdf ? "#94A3B8" : "#15803D",
+                fontFamily: "Poppins, sans-serif",
+                cursor: downloadingPdf ? "not-allowed" : "pointer",
+                transition: "all 0.15s",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => {
+                if (!downloadingPdf) {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "#BBF7D0";
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#F0FDF4";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!downloadingPdf) {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "#E2E8F0";
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#fff";
+                }
+              }}
+            >
+              {downloadingPdf ? (
+                <span
+                  style={{
+                    width: 12,
+                    height: 12,
+                    border: "2px solid rgba(21,128,61,0.25)",
+                    borderTopColor: "#15803D",
+                    borderRadius: "50%",
+                    animation: "agro-spin 0.8s linear infinite",
+                    display: "inline-block",
+                  }}
+                />
+              ) : (
+                <span style={{ fontSize: 12 }}>📄</span>
+              )}
+              {downloadingPdf ? s.generatingPdf : s.downloadPdf}
+            </button>
+          )}
 
           <HealthPill
             isHealthy={isHealthy}
