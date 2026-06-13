@@ -1,6 +1,7 @@
 // src/features/agro-lens/api/agroPdf.ts
 // Pure jsPDF native text — no html2canvas, no rasterisation.
 // Layout mirrors the reference AgroLens PDF exactly.
+// Devanagari (Marathi/Hindi) support via runtime-loaded Noto Sans Devanagari font.
 
 import jsPDF from "jspdf";
 import type { DiagnosisItem, AgroLang } from "../types/agro.types";
@@ -35,53 +36,53 @@ const PDF_LABELS = {
   },
   mr: {
     title: "AgroLens",
-    subtitle: "AI Diagnostic Vision",
-    s1: "1. Device & Telemetry Records",
-    userUUID: "User UUID",
-    selectCrop: "Pik Nivada",
-    latitude: "Akshansh",
-    longitude: "Rekhansh",
-    s2: "2. Diagnostic Frame Source",
-    s3: "3. Analytical Findings Matrix",
-    globalHealth: "Global Health Vector",
-    optimalDistance: "Optimal Distance",
-    inFocus: "In Focus",
-    s4: "4. Nidan Nikal",
-    pathology: "Pathology",
-    likelihood: "Likelihood",
-    scientific: "Scientific",
-    symptoms: "Lakshane",
-    organicTreatment: "Sendriay Upchar",
-    chemicalTreatment: "Rasayanik Upchar",
-    preventiveMeasures: "Pratibandak Upay",
-    date: "Dinanank",
+    subtitle: "AI निदान दृष्टी",
+    s1: "१. डिव्हाइस व टेलिमेट्री नोंदी",
+    userUUID: "युजर UUID",
+    selectCrop: "पीक निवडा",
+    latitude: "अक्षांश",
+    longitude: "रेखांश",
+    s2: "२. प्रक्रिया केलेले निदान फ्रेम स्रोत",
+    s3: "३. मुख्य विश्लेषणात्मक निष्कर्ष",
+    globalHealth: "एकूण आरोग्य स्थिती",
+    optimalDistance: "योग्य अंतर",
+    inFocus: "फोकस",
+    s4: "४. विश्लेषण निदान निकाल",
+    pathology: "रोगकारक",
+    likelihood: "शक्यता",
+    scientific: "शास्त्रीय नाव",
+    symptoms: "लक्षणे",
+    organicTreatment: "सेंद्रिय उपचार",
+    chemicalTreatment: "रासायनिक उपचार",
+    preventiveMeasures: "प्रतिबंधक उपाय",
+    date: "दिनांक",
     id: "ID",
-    noImage: "No image provided",
+    noImage: "फोटो उपलब्ध नाही",
   },
   hi: {
     title: "AgroLens",
-    subtitle: "AI Diagnostic Vision",
-    s1: "1. Device & Telemetry Records",
-    userUUID: "User UUID",
-    selectCrop: "Fasal Chunen",
-    latitude: "Akshansh",
-    longitude: "Deshantar",
-    s2: "2. Diagnostic Frame Source",
-    s3: "3. Analytical Findings Matrix",
-    globalHealth: "Global Health Vector",
-    optimalDistance: "Optimal Distance",
-    inFocus: "In Focus",
-    s4: "4. Nidan Parinam",
-    pathology: "Pathology",
-    likelihood: "Likelihood",
-    scientific: "Scientific",
-    symptoms: "Lakshan",
-    organicTreatment: "Jaivik Upchar",
-    chemicalTreatment: "Rasayanik Upchar",
-    preventiveMeasures: "Nivaarak Upaay",
-    date: "Dinanank",
+    subtitle: "AI निदान दृष्टि",
+    s1: "1. डिवाइस व टेलीमेट्री रिकॉर्ड्स",
+    userUUID: "यूजर UUID",
+    selectCrop: "फसल चुनें",
+    latitude: "अक्षांश",
+    longitude: "देशांतर",
+    s2: "2. संसाधित निदान फ्रेम स्रोत",
+    s3: "3. मुख्य विश्लेषणात्मक निष्कर्ष",
+    globalHealth: "कुल स्वास्थ्य स्थिति",
+    optimalDistance: "उपयुक्त दूरी",
+    inFocus: "फोकस",
+    s4: "4. विश्लेषण निदान परिणाम",
+    pathology: "रोगजनक",
+    likelihood: "संभावना",
+    scientific: "वैज्ञानिक नाम",
+    symptoms: "लक्षण",
+    organicTreatment: "जैविक उपचार",
+    chemicalTreatment: "रासायनिक उपचार",
+    preventiveMeasures: "निवारक उपाय",
+    date: "दिनांक",
     id: "ID",
-    noImage: "No image provided",
+    noImage: "फोटो उपलब्ध नहीं",
   },
 };
 
@@ -96,6 +97,73 @@ const C = {
   lightGray: "#888888",
   divider: "#cccccc",
   headerLine: "#1a1a1a",
+};
+
+// ─── Devanagari font support ───────────────────────────────────────────────────
+//
+// jsPDF's built-in fonts (Helvetica/Times) only cover Latin characters.
+// For Marathi/Hindi we embed Noto Sans Devanagari at runtime as a TTF.
+// The file is fetched from /public/fonts so it is NOT bundled into the JS
+// (only downloaded once, lazily, when mr/hi is selected).
+//
+// Place the font file at: public/fonts/NotoSansDevanagari-Regular.ttf
+// (Google Fonts — Noto Sans Devanagari, OFL licensed)
+
+const DEVANAGARI_FONT_URL = "/fonts/NotoSansDevanagari-Regular.ttf";
+const DEVANAGARI_FONT_NAME = "NotoDevanagari";
+
+// Module-level cache so we only fetch/convert the font once per session,
+// even if the user downloads multiple PDFs.
+let cachedDevanagariBase64: string | null = null;
+
+const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
+  const bytes = new Uint8Array(buffer);
+  const CHUNK_SIZE = 0x8000; // avoid call-stack issues with String.fromCharCode on large arrays
+  let result = "";
+  for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
+    const chunk = bytes.subarray(i, i + CHUNK_SIZE);
+    result += String.fromCharCode(...chunk);
+  }
+  return btoa(result);
+};
+
+/**
+ * Fetches (and caches) the Noto Sans Devanagari font, then registers it
+ * with the given jsPDF instance under the "NotoDevanagari" family for
+ * both "normal" and "bold" styles (same glyphs — jsPDF needs a style
+ * entry to allow setFont(..., "bold") without falling back/erroring).
+ *
+ * Returns true if the font was successfully registered, false otherwise
+ * (caller should fall back to helvetica in that case).
+ */
+const registerDevanagariFont = async (pdf: jsPDF): Promise<boolean> => {
+  try {
+    if (!cachedDevanagariBase64) {
+      const res = await fetch(DEVANAGARI_FONT_URL);
+      if (!res.ok) {
+        console.error(
+          `[AgroLens PDF] Failed to load Devanagari font (HTTP ${res.status}) from ${DEVANAGARI_FONT_URL}`,
+        );
+        return false;
+      }
+      const buffer = await res.arrayBuffer();
+      cachedDevanagariBase64 = arrayBufferToBase64(buffer);
+    }
+
+    const vfsName = "NotoSansDevanagari-Regular.ttf";
+    pdf.addFileToVFS(vfsName, cachedDevanagariBase64);
+    pdf.addFont(vfsName, DEVANAGARI_FONT_NAME, "normal");
+    // Reuse same glyphs for "bold" — visually not bolder, but renders
+    // correctly instead of falling back to Helvetica (which would show
+    // boxes/missing glyphs for Devanagari text).
+    pdf.addFont(vfsName, DEVANAGARI_FONT_NAME, "bold");
+    pdf.addFont(vfsName, DEVANAGARI_FONT_NAME, "italic");
+
+    return true;
+  } catch (err) {
+    console.error("[AgroLens PDF] Error registering Devanagari font:", err);
+    return false;
+  }
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -170,6 +238,32 @@ export const downloadDiagnosisPdf = async (
   const CW = PW - ML - MR; // 505.28 pt usable width
   const FOOTER_H = 30;
 
+  // ── Devanagari font registration (mr/hi only) ────────────────────────────────
+  // If registration fails (e.g. font file missing from /public/fonts), we
+  // silently fall back to helvetica — Latin labels/numbers still render fine,
+  // only Devanagari glyphs would show as boxes.
+  let useDevanagari = false;
+  if (lang === "mr" || lang === "hi") {
+    useDevanagari = await registerDevanagariFont(pdf);
+    if (!useDevanagari) {
+      console.warn(
+        "[AgroLens PDF] Devanagari font unavailable — falling back to Helvetica. " +
+          "Marathi/Hindi text may not render correctly.",
+      );
+    }
+  }
+
+  // Resolve the actual font family/style to use, given the requested style.
+  // "bolditalic" isn't registered separately for Devanagari — fall back to bold.
+  const resolveFont = (
+    style: "normal" | "bold" | "italic",
+  ): { family: string; style: "normal" | "bold" | "italic" } => {
+    if (useDevanagari) {
+      return { family: DEVANAGARI_FONT_NAME, style };
+    }
+    return { family: "helvetica", style };
+  };
+
   let y = 0; // running cursor
 
   // ── Pagination guard ────────────────────────────────────────────────────────
@@ -199,7 +293,8 @@ export const downloadDiagnosisPdf = async (
     size: number,
     color: string,
   ) => {
-    pdf.setFont("helvetica", style);
+    const { family, style: resolvedStyle } = resolveFont(style);
+    pdf.setFont(family, resolvedStyle);
     pdf.setFontSize(size);
     pdf.setTextColor(color);
   };
